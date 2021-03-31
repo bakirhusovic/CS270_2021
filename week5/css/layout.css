@@ -43,11 +43,37 @@ main {
     width: 1000px;
     margin: 20px auto 0;
     display: flex;
+    flex-wrap: wrap;
+}
+
+section a {
+    background: #10374d;
+    padding: 5px;
+    display: inline-block;
+    margin: 20px 0;
+    color: white;
+    text-decoration: none;
 }
 
 main aside {
     width: 300px;
     margin-left: 50px;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    order: 2;
+}
+
+main aside + aside {
+    order: 3;
+}
+
+main section {
+    flex-grow: 1;
+    flex-basis: auto;
+    flex-shrink: 0;
+    width: 650px;
+    order: 1;
 }
 
 footer {
@@ -57,4 +83,23 @@ footer {
     text-align: center;
     padding: 10px;
     font-size: 10px;
+}
+
+#test-flex {
+    width: 1000px;
+    margin: auto;
+    display: flex;
+}
+
+#test-flex div {
+    border: 1px solid red;
+    height: 100px;
+    flex-grow: 2;
+    flex-basis: 0;
+    overflow: auto;
+}
+
+#test-flex #specific-div {
+    border: 1px solid yellow;
+    flex-grow: 2;
 }

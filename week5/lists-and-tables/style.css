@@ -1,0 +1,27 @@
+ul {
+    list-style-type: circle;
+}
+
+ol {
+    list-style-type: lower-alpha;
+    list-style-position: inside;
+}
+
+table {
+    border: 1px solid black;
+    width: 500px;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    height: 50px;
+    vertical-align: top;
+}
+
+thead {
+    background: #10374d;
+    color: white;
+}
