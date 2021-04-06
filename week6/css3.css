@@ -1,0 +1,17 @@
+p {
+    background-color: #10374d;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid red;
+    text-shadow: 0 1px 3px gray;
+    box-shadow: 5px 5px 3px 0 rgba(0, 0, 0, 0.4);
+    margin-bottom: 200px;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: red;
+}
