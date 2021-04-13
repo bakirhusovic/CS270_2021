@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #E2E8F0;
+    font-family: 'open_sans', sans-serif;
+}
+header{
+    background-color: #1A202C;
+}
+.wrapper {
+    width: 1170px;
+    margin: 0 auto;
+}
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+header .wrapper{
+    align-items: center;
+    padding: 10px 0;
+}
+header h1{
+    color: #ffffff;
+    letter-spacing: 6px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+header ul li{
+    display: inline;
+}
+header ul li a{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+}
+header ul li a:hover{
+    background-color: #2D3748;
+    border-radius: 10px;
+}
+.subheader{
+    background-color: #ffffff;
+}
+.subheader .subheader-wrapper{
+    text-align: center;
+}
+.subheader p{
+    padding: 30px;
+    font-style: italic;
+}
+.subheader a{
+    display: inline-block;
+    background-color: #9B2C2C;
+    color: #ffff;
+    text-decoration: none;
+    padding: 17px 35px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+section{
+    margin-top: 40px;
+    width: 49%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    transition: all 0.3s ease-in;
+
+}
+section img{
+    width: 100%;
+}
+section p{
+    text-align: justify;
+    padding: 10px;
+    line-height: 20px;
+}
+section:hover{
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #1A202C;
+}
+
+.subfooter {
+    color: white;
+    padding: 10px;
+    margin-top: 25px;
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        width: 100%;
+    }
+
+    header ul {
+        display: none;
+    }
+
+    header h1 {
+        margin-left: 10px;
+    }
+
+    main.flex-space-between {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    main section {
+        width: 100%;
+    }
+
+    main section:hover {
+        transform: none;
+    }
+}
+
+/*
+Width of the main content area: 1170px
+Default font size: 18px
+
+Page background color: E2E8F0
+Header and footer background color: 1A202C
+Background color for navigation items in hover state: 2D3748
+"Action" button background color: 9B2C2C
+
+Columns (elements where you have image contained) have a shadow
+When hovering these columns increase their size and animate it. Apply this effect to the desktop version only.
+Change of background color for navigation items must be animated. Make animation duration to be 0.5s and effect to be 'ease'.
+
+Navigation item links should open in a new tab/window.
+
+Separation of letters in the heading must be done using a CSS rule. Do not use space character in the HTML document.
+
+ */
