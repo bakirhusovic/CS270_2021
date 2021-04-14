@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    background-color: #eeeeee;
+    color: #222;
+    font-size: 18px;
+}
+
+div {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+main {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+}
+
+section, aside {
+    flex-shrink: 0;
+}
+
+section h2 {
+    font-size: 30px;
+}
+
+section p {
+    line-height: 30px;
+}
+
+aside {
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    align-self: flex-start;
+}
+
+aside ol li {
+    margin-bottom: 10px;
+}
+
+section {
+    width: 900px;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    div {
+        width: 100%;
+    }
+
+    main, aside, section {
+        width: 100%;
+    }
+
+    main {
+        flex-wrap: wrap;
+        padding: 0 10px;
+        /*width: calc(100% - 30px);*/
+        box-sizing: border-box;
+        /*flex-direction: column;*/
+    }
+
+    aside {
+        order: 2;
+    }
+
+    section {
+        order: 1;
+        padding-left: 0;
+    }
+
+    section p {
+        line-height: 20px;
+    }
+}
+
+@media (max-width: 600px) and (min-width: 300px) {
+    body {
+        background-color: red;
+    }
+}
+
+@media (max-width: 300px) {
+    body {
+        background-color: green;
+    }
+}

@@ -1,7 +1,8 @@
 body {
-    font-family: Verdana, sans-serif;
+    font-family: 'PT Sans', sans-serif;
     background-color: #f3f3f3;
     color: #444444;
+    margin: 0;
 }
 
 #container {
@@ -144,4 +145,56 @@ footer {
     text-align: center;
     padding: 10px 0;
     margin-top: 40px;
+}
+
+@media (max-width: 1000px) {
+    #container {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    header li {
+        margin-left: 2%;
+    }
+
+    header nav {
+        width: 100%;
+        white-space: nowrap;
+        overflow: scroll;
+    }
+
+    #welcome {
+        flex-direction: column;
+    }
+
+    #buttons {
+        align-items: center;
+    }
+
+    main section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    main {
+        /*flex-wrap: wrap;*/
+        flex-direction: column;
+    }
+
+    #third-column {
+        order: 1;
+    }
+
+    #first-column {
+        order: 2;
+    }
+
+    #second-column {
+        order: 3;
+    }
 }
