@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            color: #333;
+        }
+        input {
+            color: #333;
+            font-style: italic;
+        }
+        input:invalid {
+            border: 5px solid red;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Personalia:</legend>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" size="30" required maxlength="5" autofocus/><br/>
+        Email: <input name="email" type="email" size="30" placeholder="Please type in your email"/><br/>
+        Date of birth: <input name="date_of_birth" type="date" size="10"/><br/>
+        <input type="radio" name="active" > Yes <br>
+        <input type="radio" name="active" checked> No <br>
+
+        <input type="checkbox" name="options[]" > Option 1 <br>
+        <input type="checkbox" name="options[]" checked> Option 2 <br>
+
+        <select name="dropdown-example[]" multiple>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+            <option value="5" selected>Option 5</option>
+        </select>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <select id="menu" name="menu" size="1">
+            <option value="0"> Choose a meal</option>
+            <optgroup label="Soup">
+            <option value="hot and sour">Hot and Sour Soup</option>
+            <option value="egg drop">Egg Drop Soup</option>
+            <option value="chicken noodle">Chicken Noodle Soup</option>
+            </optgroup>
+            <optgroup label="Salad">
+            <option value="garden">Garden Salad</option>
+            <option value="spinach">Spinach Salad</option>
+            <option value="fruit">Fruit Salad</option>
+            </optgroup>
+        </select>
+
+        <input type="file" name="image" accept="image/*">
+        <input type="hidden" name="user_id" value="1">
+        <input type="password" name="password">
+        <input type="url" name="password">
+        <input type="color" name="password">
+        <input type="range" name="password" min="0" max="10" step="2" id="range-example">
+        <span id="result"></span>
+        <!--document.getElementById('result').innerText = document.getElementById('range-example').value-->
+    </fieldset>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
