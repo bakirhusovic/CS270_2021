@@ -1,0 +1,20 @@
+<aside>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab accusantium ad architecto blanditiis delectus deleniti dolorem eius eveniet, expedita labore libero minus necessitatibus odit quae quas reiciendis sequi soluta.
+    </p>
+    <ul>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+    </ul>
+    <ol>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+    </ol>
+</aside>

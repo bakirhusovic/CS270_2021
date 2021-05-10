@@ -1,0 +1,137 @@
+/*
+* {
+    margin: 0;
+}
+*/
+
+body {
+    font-family: Roboto, sans-serif;
+    background-color: #F9FAFB;
+    margin: 0;
+}
+
+header {
+    background-color: #047857;
+    color: white;
+    /*padding: 20px 0;*/
+    text-transform: uppercase;
+}
+
+header a {
+    color: inherit;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+header a:hover {
+    background-color: #064E3B;
+    border-radius: 5px;
+}
+
+header h1 {
+    color: #064E3B;
+    letter-spacing: 15px;
+}
+
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    display: flex;
+}
+
+main section {
+    width: 800px;
+    margin-left: 30px;
+}
+
+main section img {
+    width: 300px;
+    float: left;
+    margin-right: 15px;
+    border-radius: 0 40px 40px 0;
+    transition: all 0.3s ease-in;
+}
+
+main section img:hover {
+    border-radius: 40px 0 0 40px;
+}
+
+main aside {
+    width: 370px;
+    font-style: italic;
+}
+
+section p {
+    line-height: 30px;
+}
+
+footer {
+    background-color: #047857;
+    color: white;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 60px;
+}
+
+#read-more {
+    background-color: #047857;
+    padding: 20px 25px;
+    display: inline-block;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in;
+}
+
+#read-more:hover {
+    background-color: #064E3B;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+    .wrapper, main section img, main section, main aside {
+        width: 100%;
+    }
+
+    header {
+        padding-bottom: 20px;
+    }
+
+    .wrapper {
+        flex-direction: column;
+    }
+
+    main {
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    main section {
+        margin: 0;
+    }
+
+    main section img {
+        border-radius: 0;
+        margin-right: 0;
+        float: none;
+    }
+
+    main aside, header nav {
+        order: 2;
+    }
+
+    section h2 {
+        text-align: center;
+    }
+}
