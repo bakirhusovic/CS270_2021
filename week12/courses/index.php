@@ -1,5 +1,8 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'cs270_2021');
+session_start();
+require('includes/functions.php');
+
+require('includes/db.php');
 
 $queryString = 'select * from courses ';
 
@@ -34,6 +37,10 @@ $numOfPages = ceil($numOfCourses['num_of_courses'] / $perPage);
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div>
+    <?= flashMessage('msg') ?>
+</div>
+
     <a href="create.php">Create a new course</a>
     <table>
         <tr>
