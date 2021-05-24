@@ -1,5 +1,12 @@
 <?php
 session_start();
+require ('../includes/function.php');
+
+if (checkIfNotLoggedIn()) {
+    header('Location: ../login.html');
+    exit();
+}
+
 require('../includes/db.php');
 if ($_POST) {
 
@@ -8,8 +15,14 @@ if ($_POST) {
     $publishedAt = $_POST['published_at'];
     $categoryId = $_POST['category_id'];
     $userId = $_SESSION['user_id'];
+    $imageName = '';
 
-    mysqli_query($conn, "insert into articles (title, content, published_at, category_id, created_by, updated_by) values ('{$title}', '{$content}', '{$publishedAt}', {$categoryId}, $userId, $userId)");
+    if (isset($_FILES['image']) && $_FILES['image']) {
+        $imageName = $_FILES['image']['name'];
+        move_uploaded_file($_FILES['image']['tmp_name'], '../images/' . $imageName);
+    }
+
+    mysqli_query($conn, "insert into articles (image, title, content, published_at, category_id, created_by, updated_by) values ('{$imageName}', '{$title}', '{$content}', '{$publishedAt}', {$categoryId}, $userId, $userId)");
 
     header('Location: index.php');
     exit();
@@ -21,14 +34,15 @@ $query = mysqli_query($conn, 'select * from categories');
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <?php require('../includes/head.php') ?>
     <title>Add new article</title>
 </head>
 <body>
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
+    <div>
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image">
+    </div>
     <div>
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
