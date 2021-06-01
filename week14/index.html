@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title" onclick="changeText(this)">Click here</h1>
+    <p id="test-event">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consequuntur cupiditate delectus dolorem incidunt itaque, magnam vero! Animi esse laborum magnam temporibus voluptatum! A architecto commodi hic mollitia quis totam.</p>
+    <button onclick="loadData()">Submit</button>
+    <script>
+        //setTimeout(() => {
+        setTimeout(function() {
+            let titleElement = document.getElementById('test-event');
+
+            titleElement.innerText = 'Hello world';
+
+            titleElement.style.color = 'red';
+            titleElement.style.fontFamily = 'sans-serif';
+            //titleElement.style['font-family'] = 'sans-serif';
+
+            /*console.log(document.getElementById('title'));
+            console.log(document.getElementsByTagName('h1')[0]);*/
+        }, 5000); // 5000ms = 5s - delay
+
+        function changeText(element) {
+            setTimeout(function() {
+                element.innerText = 'Clicked';
+            }, 2000);
+        }
+
+        let a = 1;
+
+        console.log(a++);
+        console.log(a * 5);
+
+        let b = 'Hello';
+        console.log(b.length);
+
+        let c = [
+            1, 2, 3, 4
+        ];
+        console.log(c);
+        console.log(c[1]);
+        //c['first_name'] = 'John';
+        //c['1'] = 'Jane'; //casted to an integer index 1
+        c.first_name = 'John';
+        console.log(c);
+        console.log(c.first_name);
+
+        let d = {
+            firstName: 'John',
+            lastName: 'DOe',
+        }
+
+        console.log(d);
+
+        function loadData() {
+            //https://jsonplaceholder.typicode.com/todos/1
+            fetch('http://localhost:8000/test.php').then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                let titleElement = document.getElementById('title');
+
+                titleElement.innerText = 'Hello ' + data.firstName;
+                //console.log(data);
+            })
+        }
+    </script>
+</body>
+</html>
