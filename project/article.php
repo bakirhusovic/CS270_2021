@@ -20,23 +20,63 @@ $article = mysqli_fetch_assoc($query);
     <title>Welcome to CSIS270 Blog</title>
     <script>
         function addNewComment() {
-            console.log('Test');
-            //event.preventDefault();
+            const comment = document.getElementById('content').value;
+            const articleId = document.getElementById('article_id').value;
 
             let data = {
-                article_id: document.getElementById('article_id').value,
-                content: document.getElementById('content').value,
+                article_id: articleId,
+                content: comment,
+                parent_id: document.getElementById('parent_id').value
             }
 
-            fetch('/saveComment.php', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
+            if (comment) {
+                document.getElementById('content').disabled = 'disabled';
+                document.getElementById('submit-form-btn').disabled = 'disabled';
+                document.getElementById('msg').innerText = 'Please wait';
+                fetch('/saveCommentJson.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }).then(function(response) {
+                    return response.json()
+                }).then(function(data) {
+                    if (data.status === 'ok') {
+                        document.getElementById('content').disabled = '';
+                        document.getElementById('submit-form-btn').disabled = '';
+                        document.getElementById('msg').innerText = '';
+                        /*comments.push({
+                            id: data.commentId,
+                            content: comment,
+                            user: data.user
+                        })*/
+                        //console.log(data.user + ' wrote ' + comment)
+                        let newCommentHtml = '<div><p>' + comment + '</p><span>' + data.user + '</span><a href="article.php?id=' + articleId + '&reply_id=' + data.commentId + '">Reply</a></div>';
+
+                        let commentsWrapper = document.getElementById('comments');
+
+                        commentsWrapper.innerHTML = newCommentHtml + commentsWrapper.innerHTML;
+
+                        document.getElementById('content').value = '';
+                    } else {
+                        alert(data.msg);
+                    }
+                });
+            } else {
+                alert('Comment is required');
+            }
 
             return false;
+        }
+        function replyOnComment(commentId) {
+            document.getElementById('parent_id').value = commentId;
+            document.getElementById('msg').innerText = 'Reply to comment #' + commentId;
+            document.getElementById('content').focus();
+            window.scroll({
+                top: 0,
+                behavior: 'smooth',
+            })
         }
     </script>
 </head>
@@ -50,29 +90,36 @@ $article = mysqli_fetch_assoc($query);
             <?= nl2br($article['content']) ?>
         </div>
         <?php if(!checkIfNotLoggedIn()): ?>
-        <form action="saveComment.php" method="post" onsubmit="addNewComment()">
+        <p id="msg"></p>
+        <form action="saveComment.php" method="post" onsubmit="addNewComment();return false">
             <input type="hidden" id="article_id" name="article_id" value="<?= $article['id'] ?>">
-            <?php if($replyTo):?>
-                <input type="hidden" name="parent_id" value="<?= $replyId ?>">
-                Replying to the comment id <?= $replyId ?> written by <?= $replyTo['first_name'] . ' ' . $replyTo['last_name'] ?>
-            <?php endif; ?>
+            <?php /*if($replyTo):*/?><!--
+                <input type="hidden" name="parent_id" value="<?/*= $replyId */?>">
+                Replying to the comment id <?/*= $replyId */?> written by <?/*= $replyTo['first_name'] . ' ' . $replyTo['last_name'] */?>
+            --><?php /*endif; */?>
+            <input id="parent_id" type="hidden" name="parent_id" value="<?= $replyId ?>">
             <div>
                 <label for="content">Content</label>
                 <textarea name="content" id="content" cols="30" rows="10"></textarea>
             </div>
-            <button type="submit">Submit</button>
+            <button id="submit-form-btn" type="submit">Submit</button>
         </form>
         <?php endif; ?>
-        <div>
+        <div id="comments">
             <?php while($comment = mysqli_fetch_assoc($commentQuery)): ?>
                 <div class="<?= $comment['parent_id'] ? 'reply' : null ?>">
                     <p><?= nl2br($comment['content']) ?></p>
                     <span><?= $comment['first_name'] . ' ' . $comment['last_name'] ?></span>
                     <?php if(!$comment['parent_id']): ?>
-                    <a href="article.php?id=<?= $article['id']?>&reply_id=<?= $comment['id']?>">Reply</a>
+                    <a onclick="replyOnComment(<?= $comment['id']?>);return false;" href="article.php?id=<?= $article['id']?>&reply_id=<?= $comment['id']?>">Reply</a>
                     <?php endif; ?>
                 </div>
             <?php endwhile; ?>
+            <!--<div v-for="comment in comments">
+                <p>{{ comment.content }}</p>
+                <span>{{ comment.user }}</span>
+                <a v-if="!comment.parent_id" :href="'article.php?id=' + article.id + '&reply_id=' + comment.id">Reply</a>
+            </div>-->
         </div>
     </main>
     <footer>

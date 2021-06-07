@@ -15,11 +15,32 @@ if ($input) {
     $userId = $_SESSION['user_id'];
     $currentDateTime = date('Y-m-d H:i:s');
 
-    if ($parentId) {
-        mysqli_query($conn, "insert into comments (content, article_id, created_by, created_at, parent_id) values ('{$content}', {$articleId}, {$userId}, '{$currentDateTime}', {$parentId});");
+    sleep(5);
+
+    if ($content) {
+        if ($parentId) {
+            mysqli_query($conn, "insert into comments (content, article_id, created_by, created_at, parent_id) values ('{$content}', {$articleId}, {$userId}, '{$currentDateTime}', {$parentId});");
+        } else {
+            mysqli_query($conn, "insert into comments (content, article_id, created_by, created_at) values ('{$content}', {$articleId}, {$userId}, '{$currentDateTime}');");
+        }
+
+        $commentId = mysqli_insert_id($conn);
+
+        $response = [
+            'msg' => 'Comment is successfully saved',
+            'status' => 'ok',
+            'commentId' => $commentId,
+            'user' => $_SESSION['first_name'] . ' ' . $_SESSION['last_name'],
+        ];
     } else {
-        mysqli_query($conn, "insert into comments (content, article_id, created_by, created_at) values ('{$content}', {$articleId}, {$userId}, '{$currentDateTime}');");
+        $response = [
+            'msg' => 'Comment is required',
+            'status' => 'validation_failed',
+        ];
     }
 
-    header('Location: article.php?id=' . $articleId);
+    header('Content-type: application/json');
+
+
+    echo json_encode($response);
 }

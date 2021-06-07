@@ -13,6 +13,7 @@ if ($_POST) {
     $userId = $_SESSION['user_id'];
     $currentDateTime = date('Y-m-d H:i:s');
 
+    sleep(5);
     if ($parentId) {
         mysqli_query($conn, "insert into comments (content, article_id, created_by, created_at, parent_id) values ('{$content}', {$articleId}, {$userId}, '{$currentDateTime}', {$parentId});");
     } else {
