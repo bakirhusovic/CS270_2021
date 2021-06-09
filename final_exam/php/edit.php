@@ -1,0 +1,43 @@
+<?php
+$connection = mysqli_connect('localhost', 'root', '', 'cs270_2021_project');
+
+$id = $_GET['id'];
+$affectedRows = null;
+
+if ($_POST) {
+    $name = $_POST['name'];
+
+    mysqli_query($connection, "update categories set name = '{$name}' where id = {$id}");
+
+    $affectedRows = mysqli_affected_rows($connection);
+}
+
+$query = mysqli_query($connection, 'select * from categories where id = ' . $id);
+$category = mysqli_fetch_assoc($query);
+
+
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="" method="post">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="<?= $category['name'] ?>">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+<?php if($affectedRows): ?>
+YOu have successfully updated the category
+<?php elseif($affectedRows === 0): ?>
+No changes have been done
+<?php endif; ?>
+</body>
+</html>
